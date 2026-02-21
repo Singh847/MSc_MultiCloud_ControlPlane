@@ -1,0 +1,10 @@
+[
+  {
+    "selfLink": "gcp1",
+    "resourceType": "iam.user",
+    "region": "global",
+    "name": "admin",
+    "iam_admin": true,
+    "monthly_cost_estimate": 0
+  }
+]

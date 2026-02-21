@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Methodology | Multi-Cloud Control Plane</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; line-height: 1.5; }
+    code, pre { background:#f5f5f5; padding: 2px 6px; border-radius: 6px; }
+    .box { border:1px solid #ddd; padding:14px; border-radius:10px; margin:12px 0; }
+    h1,h2 { margin: 0.2rem 0; }
+    ul { margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Methodology</h1>
+  <p>This project is an MSc dissertation prototype implementing an <b>advanced enhanced multi-cloud governance control plane</b>.</p>
+
+  <div class="box">
+    <h2>Architecture</h2>
+    <ul>
+      <li><b>Provider Clients</b>: SDK / API clients per cloud (Azure real via Azure SDK; AWS/GCP mock or extendable to real).</li>
+      <li><b>Normalization Layer</b>: converts heterogeneous provider resources into a unified <code>Resource</code> model.</li>
+      <li><b>Policy Engine</b>: policy-as-code rules evaluate normalized resources and output findings.</li>
+      <li><b>Risk Scoring</b>: calculates a risk score per resource based on exposure/encryption/privilege/cost.</li>
+      <li><b>Snapshot & Drift</b>: snapshots capture state; drift compares two snapshots to detect changes over time.</li>
+      <li><b>Reporting</b>: exports JSON + PDF; dashboard renders web views + charts.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>Scoring Logic (High Level)</h2>
+    <ul>
+      <li><b>Public exposure</b> increases risk</li>
+      <li><b>Unencrypted sensitive resources</b> increase risk</li>
+      <li><b>Admin privileges / owner-like roles</b> increase risk</li>
+      <li><b>High estimated costs</b> adds operational risk (FinOps signal)</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>How Drift Works</h2>
+    <p>Resources are indexed by <code>resource_id</code>. Between snapshots, the engine reports:</p>
+    <ul>
+      <li><b>created</b>: present in new but not old</li>
+      <li><b>deleted</b>: present in old but not new</li>
+      <li><b>changed</b>: same id but different fields</li>
+    </ul>
+  </div>
+
+  <p><a href="/">← Back to Dashboard</a></p>
+</body>
+</html>

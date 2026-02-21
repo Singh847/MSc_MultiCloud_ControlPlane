@@ -1,0 +1,11 @@
+[
+  {
+    "id": "az1",
+    "type": "db.sql",
+    "location": "uksouth",
+    "name": "sql1",
+    "internet_exposed": true,
+    "encryption_enabled": false,
+    "monthly_cost_estimate": 300
+  }
+]

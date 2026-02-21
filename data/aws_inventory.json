@@ -1,0 +1,20 @@
+[
+  {
+    "arn": "aws1",
+    "kind": "storage.bucket",
+    "region": "eu-west-2",
+    "name": "bucket1",
+    "public": true,
+    "encrypted": false,
+    "monthly_cost_estimate": 120
+  },
+  {
+    "arn": "aws2",
+    "kind": "compute.vm",
+    "region": "eu-west-2",
+    "name": "vm1",
+    "public": false,
+    "encrypted": true,
+    "monthly_cost_estimate": 600
+  }
+]
