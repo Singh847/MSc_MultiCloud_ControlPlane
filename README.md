@@ -263,6 +263,11 @@ Docker containerization
 
 Deployment to Azure/AWS
 
+## Run API
+uvicorn app.api:app --reload
+Open: http://127.0.0.1:8000/docs
+
+
 👨‍💻 Author
 
 Sumeer Singh Rana
