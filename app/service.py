@@ -10,7 +10,6 @@ from .normalize import normalize
 from .providers.aws_mock import AWSMockClient
 from .providers.gcp_mock import GCPMockClient
 from .providers.azure_mock import AzureMockClient
-from .providers.azure_real import AzureRealClient
 
 from .policies.engine import evaluate
 from .security_score import calculate_risk
@@ -18,16 +17,23 @@ from .drift import detect_drift
 
 
 def build_clients():
+    # ✅ Deploy-safe: use only mock clients by default
     clients = {
         "aws": AWSMockClient(settings.data_dir),
         "gcp": GCPMockClient(settings.data_dir),
+        "azure": AzureMockClient(settings.data_dir),
     }
 
-    # Azure: mock or real
+    # Optional: keep "real" mode support without breaking deploy
+    # Only try to import Azure SDK when azure_mode == "real"
     if settings.azure_mode == "real":
-        clients["azure"] = AzureRealClient(settings.azure_subscription_id)
-    else:
-        clients["azure"] = AzureMockClient(settings.data_dir)
+        try:
+            from .providers.azure_real import AzureRealClient  # lazy import
+            clients["azure"] = AzureRealClient(settings.azure_subscription_id)
+        except Exception as e:
+            # If Azure SDK isn't installed (e.g., on Render), fall back to mock
+            print(f"[WARN] Azure real mode unavailable ({e}). Falling back to AzureMockClient.")
+            clients["azure"] = AzureMockClient(settings.data_dir)
 
     return clients
 
@@ -37,6 +43,9 @@ def collect_resources(providers: List[str]) -> List[Resource]:
     resources: List[Resource] = []
 
     for p in providers:
+        if p not in clients:
+            raise ValueError(f"Unknown provider '{p}'. Available: {list(clients.keys())}")
+
         raw_items = clients[p].fetch_raw_inventory()
         for item in raw_items:
             resources.append(normalize(p, item))
@@ -65,7 +74,7 @@ def build_report(providers: Optional[List[str]] = None) -> Dict[str, object]:
 
     resources = collect_resources(providers)
 
-    # ✅ NEW: cost per provider
+    # ✅ cost per provider
     cost_per_provider = defaultdict(float)
     for r in resources:
         cost_per_provider[r.provider] += float(r.monthly_cost_estimate)
