@@ -1,4 +1,4 @@
-🚀 Advanced Multi-Cloud Control Plane
+l🚀 Advanced Multi-Cloud Control Plane
 
 MSc Dissertation Project – Cloud Governance & Security Automation
 
@@ -265,7 +265,7 @@ Deployment to Azure/AWS
 
 ## Run API
 uvicorn app.api:app --reload
-Open: http://127.0.0.1:8000/docs
+https://msc-multicloud-controlplane.onrender.com/docs
 
 
 👨‍💻 Author
