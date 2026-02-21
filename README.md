@@ -1,5 +1,11 @@
 l🚀 Advanced Multi-Cloud Control Plane
 
+## 🔗 Live Demo
+
+- **Dashboard:** https://msc-multicloud-controlplane.onrender.com/
+- **API Docs (Swagger):** https://msc-multicloud-controlplane.onrender.com/docs
+- **Health Check:** https://msc-multicloud-controlplane.onrender.com/health
+
 MSc Dissertation Project – Cloud Governance & Security Automation
 
 📌 Overview
