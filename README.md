@@ -1,123 +1,106 @@
-l🚀 Advanced Multi-Cloud Control Plane
+🚀 Advanced Multi-Cloud Security Control Plane
 
-## 🔗 Live Demo
+A Python-based cloud governance and security orchestration platform designed to detect misconfigurations, calculate security posture scores, and monitor configuration drift across multi-cloud environments.
 
-- **Dashboard:** https://msc-multicloud-controlplane.onrender.com/
-- **API Docs (Swagger):** https://msc-multicloud-controlplane.onrender.com/docs
-- **Health Check:** https://msc-multicloud-controlplane.onrender.com/health
 
-MSc Dissertation Project – Cloud Governance & Security Automation
+🌍 Live Deployment
 
-📌 Overview
+🔗 Dashboard
+https://msc-multicloud-controlplane.onrender.com/
 
-The Advanced Multi-Cloud Control Plane is a Python-based cloud governance and security orchestration platform designed to:
+📘 API Docs (Swagger)
+https://msc-multicloud-controlplane.onrender.com/docs
 
-Collect resource inventories across multiple cloud providers
+💓 Health Check
+https://msc-multicloud-controlplane.onrender.com/health
 
-Detect misconfigurations using policy rules
+🎯 Problem It Solves
 
-Calculate security posture scores
+Multi-cloud adoption (AWS, Azure, GCP) introduces:
 
-Detect configuration drift between snapshots
+Fragmented security visibility
 
-Generate structured JSON and PDF reports
+Policy inconsistencies
 
-Expose REST API endpoints for automation
+Configuration drift
 
-Provide a lightweight web dashboard interface
+Weak governance enforcement
 
-This project simulates real-world enterprise multi-cloud governance architecture across:
-
-AWS,Azure,GCP
-
-It demonstrates cloud engineering, DevSecOps automation, API design, reporting systems, and architecture modularity.
+This platform centralizes security evaluation and governance automation into a single control plane.
 
 🏗 Architecture Overview
-MSc_MultiCloud_ControlPlane
-│
-├── app/
-│   ├── api.py              # FastAPI REST API
-│   ├── main.py             # CLI entry point
-│   ├── service.py          # Core orchestration logic
-│   ├── config.py           # Application configuration
-│   ├── drift.py            # Drift detection engine
-│   ├── security_score.py   # Security posture scoring
-│   ├── report.py           # Console & JSON reporting
-│   ├── pdf_report.py       # PDF export functionality
-│   ├── normalize.py        # Data normalization layer
-│   ├── models.py           # Data models
-│   │
-│   ├── providers/
-│   │   ├── aws_mock.py
-│   │   ├── azure_mock.py
-│   │   ├── azure_real.py
-│   │   ├── gcp_mock.py
-│   │   └── base.py
-│   │
-│   ├── policies/
-│   │   └── engine.py       # Policy evaluation engine
-│   │
-│   └── templates/
-│       ├── index.html
-│       └── methodology.html
-│
-├── data/                   # Sample cloud inventories
-├── requirements.txt
-└── README.md
-🔥 Core Features
-✅ 1. Multi-Cloud Resource Collection
+Cloud Providers (AWS / Azure / GCP)
+            ↓
+Inventory Collection Layer
+            ↓
+Normalization Engine
+            ↓
+Policy Evaluation Engine
+            ↓
+Security Scoring Module
+            ↓
+Drift Detection Engine
+            ↓
+Reporting (Console / JSON / PDF)
+            ↓
+REST API + Web Dashboard
+Core Modules
 
-🛠 Technical Stack
-• Python
-• FastAPI (API layer)
-• Uvicorn (ASGI server)
-• Docker (Containerization)
-• RESTful architecture
-• Role-Based Access Control (RBAC)
-• Structured logging & monitoring
-• Modular project architecture
+service.py – Orchestration engine
 
-Collects inventory from:
+policies/engine.py – Policy evaluation framework
+
+security_score.py – Posture scoring logic
+
+drift.py – Snapshot comparison engine
+
+normalize.py – Cross-cloud abstraction layer
+
+pdf_report.py – Report export automation
+
+providers/ – Cloud provider abstraction pattern
+
+🔥 Core Capabilities
+✅ Multi-Cloud Inventory Collection
+
 AWS (mock)
+
 Azure (mock + real option)
+
 GCP (mock)
 
-Resources are normalized into a unified internal format.
+Unified normalization format
 
-🔐 2. Policy Engine
+🔐 Policy Engine
 
-Evaluates cloud resources against governance and security policies such as:
+Detects:
 
 Public exposure risks
 
 Missing encryption
 
-Weak configurations
+Insecure configurations
 
-Insecure settings
+Misaligned governance controls
 
-The policies/engine.py module drives rule-based evaluation.
+📊 Security Posture Scoring
 
-📊 3. Security Score Calculation
+Weighted scoring model based on:
 
-The platform calculates a security posture score based on:
+Control failures
 
-Number of failed controls
-
-Severity weighting
+Severity levels
 
 Resource criticality
 
-This simulates enterprise-level security posture management.
+📁 Drift Detection
 
-📁 4. Snapshot & Drift Detection
-
-The system supports:
+Compare infrastructure snapshots:
 
 --snapshot run1
 --drift run1 run2
 
-Drift detection compares historical snapshots and identifies:
+Detects:
 
 Added resources
 
@@ -125,112 +108,74 @@ Removed resources
 
 Modified configurations
 
-This models real-world cloud configuration drift monitoring.
-
-📄 5. Report Generation
-
-Supports:
+📄 Automated Reporting
 
 Console output
 
 JSON export
 
-PDF export (if PDF dependencies installed)
+PDF export
 
-Example:
-
---export outputs/report.json
---export-pdf outputs/report.pdf
-🌐 6. REST API (FastAPI)
-
-Launch the API:
-
-uvicorn app.api:app --reload
-
-Then open:
-
-http://127.0.0.1:8000/docs
-
-You get interactive Swagger documentation.
-
-🖥 7. CLI Interface
+🖥 CLI Usage
 
 Run:
 
 python -m app.main
 
-Available options:
-
---providers aws azure gcp
---snapshot run1
---drift old_snapshot new_snapshot
---export path.json
---export-pdf path.pdf
-⚙️ Installation
-1️⃣ Clone Repository
-git clone https://github.com/Singh847/MSc_MultiCloud_ControlPlane.git
-cd MSc_MultiCloud_ControlPlane
-2️⃣ Create Virtual Environment
-
-Windows:
-
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-
-Mac/Linux:
-
-python3 -m venv .venv
-source .venv/bin/activate
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-🚀 How to Use
-Run CLI Mode
-python -m app.main
-
-Example with providers:
+Examples:
 
 python -m app.main --providers aws azure
-
-Save snapshot:
-
 python -m app.main --snapshot run1
-
-Drift comparison:
-
 python -m app.main --drift run1 run2
-Run API Mode
+python -m app.main --export report.json
+🌐 REST API (FastAPI)
+
+Start API locally:
+
 uvicorn app.api:app --reload
 
-Open:
+Access:
 
 http://127.0.0.1:8000/docs
-🧠 What This Project Demonstrates
 
-Multi-cloud architecture understanding
+Live:
+https://msc-multicloud-controlplane.onrender.com/docs
 
-Policy-based governance engine design
+🛠 Tech Stack
 
-Modular Python architecture
+Python
 
-REST API development (FastAPI)
+FastAPI
 
-CLI tooling
+Uvicorn
 
-Security posture scoring
+Modular Architecture
 
-Drift detection logic
+Policy-as-Code Pattern
 
-Snapshot versioning
+Cloud Provider Abstraction
 
-Report automation (JSON + PDF)
+Snapshot Versioning
 
-Normalization layer abstraction
+JSON + PDF Reporting
 
-Provider abstraction design pattern
+🧠 Engineering Highlights
 
-🏆 Academic & Professional Value
+This project demonstrates:
 
-This MSc project reflects real-world enterprise cloud governance platforms such as:
+Multi-cloud architecture design
+
+Policy-based governance modeling
+
+Drift detection algorithms
+
+Abstraction layer design pattern
+
+API-first backend architecture
+
+Security automation principles
+
+Inspired by enterprise platforms such as:
 
 Prisma Cloud
 
@@ -240,45 +185,31 @@ AWS Security Hub
 
 Cloud Custodian
 
-HashiCorp Sentinel
+🔮 Roadmap
 
-It demonstrates strong capability in:
-
-Cloud Engineering
-
-DevSecOps
-
-Security Automation
-
-Platform Architecture
-
-Infrastructure Governance
-
-🔮 Future Improvements
-
-Real AWS SDK integration
-
-Real GCP SDK integration
+Real AWS & GCP SDK integration
 
 Terraform state ingestion
 
-CI/CD integration
+CI/CD pipeline integration
 
-Kubernetes integration
+Kubernetes workload support
 
-RBAC implementation
+Role-Based Access Control (RBAC)
 
-Docker containerization
-
-Deployment to Azure/AWS
-
-## Run API
-uvicorn app.api:app --reload
-https://msc-multicloud-controlplane.onrender.com/docs
-
+Full Docker production deployment
 
 👨‍💻 Author
 
 Sumeer Singh Rana
-MSc Computing – Cloud & Cybersecurity
+Cloud Security | DevSecOps | Platform Engineering
 GitHub: https://github.com/Singh847
+
+🎯 Why This Version Is Stronger
+
+✔ Clean structure
+✔ Clear problem statement
+✔ Enterprise tone
+✔ No coursework vibe
+✔ Impact-first presentation
+✔ Easy to scan in 30 seconds
