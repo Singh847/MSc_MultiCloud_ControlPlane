@@ -2,7 +2,6 @@
 
 A Python-based cloud governance and security orchestration platform designed to detect misconfigurations, calculate security posture scores, and monitor configuration drift across multi-cloud environments.
 
-
 🌍 Live Deployment
 
 🔗 Dashboard
@@ -134,7 +133,7 @@ Start API locally:
 
 uvicorn app.api:app --reload
 
-Access:
+Access locally:
 
 http://127.0.0.1:8000/docs
 
@@ -204,12 +203,3 @@ Full Docker production deployment
 Sumeer Singh Rana
 Cloud Security | DevSecOps | Platform Engineering
 GitHub: https://github.com/Singh847
-
-🎯 Why This Version Is Stronger
-
-✔ Clean structure
-✔ Clear problem statement
-✔ Enterprise tone
-✔ No coursework vibe
-✔ Impact-first presentation
-✔ Easy to scan in 30 seconds
