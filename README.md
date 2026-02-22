@@ -28,11 +28,7 @@ Provide a lightweight web dashboard interface
 
 This project simulates real-world enterprise multi-cloud governance architecture across:
 
-AWS
-
-Azure
-
-GCP
+AWS,Azure,GCP
 
 It demonstrates cloud engineering, DevSecOps automation, API design, reporting systems, and architecture modularity.
 
@@ -71,12 +67,19 @@ MSc_MultiCloud_ControlPlane
 🔥 Core Features
 ✅ 1. Multi-Cloud Resource Collection
 
+🛠 Technical Stack
+• Python
+• FastAPI (API layer)
+• Uvicorn (ASGI server)
+• Docker (Containerization)
+• RESTful architecture
+• Role-Based Access Control (RBAC)
+• Structured logging & monitoring
+• Modular project architecture
+
 Collects inventory from:
-
 AWS (mock)
-
 Azure (mock + real option)
-
 GCP (mock)
 
 Resources are normalized into a unified internal format.
